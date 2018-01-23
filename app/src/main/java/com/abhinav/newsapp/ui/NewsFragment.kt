@@ -5,6 +5,7 @@ import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_news.*
 /**
  * Created by abhinav.sharma on 01/11/17.
  */
-class NewsFragment : LifecycleFragment(), (SourceEntity) -> Unit {
+class NewsFragment : Fragment(), (SourceEntity) -> Unit {
 
     private lateinit var newsViewModel: NewsViewModel
     private lateinit var observerNewsSource: Observer<Resource<List<SourceEntity>>>
