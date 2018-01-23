@@ -13,8 +13,10 @@ import android.view.ViewGroup
 import com.abhinav.newsapp.R
 import com.abhinav.newsapp.adapter.NewsArticleAdapter
 import com.abhinav.newsapp.adapter.NewsSourceAdapter
+import com.abhinav.newsapp.adapter.viewholder.ThemesAdapter
 import com.abhinav.newsapp.api.Resource
 import com.abhinav.newsapp.db.SourceEntity
+import com.abhinav.newsapp.db.ThemeEntity
 import com.abhinav.newsapp.ui.model.ArticlesResponse
 import com.abhinav.newsapp.ui.model.Source
 import com.abhinav.newsapp.ui.model.SourceResponse
@@ -27,11 +29,14 @@ import kotlinx.android.synthetic.main.fragment_news.*
 class NewsFragment : Fragment(), (SourceEntity) -> Unit {
 
     private lateinit var newsViewModel: NewsViewModel
+    private lateinit var observerThemes: Observer<Resource<List<ThemeEntity>>>
     private lateinit var observerNewsSource: Observer<Resource<List<SourceEntity>>>
     private lateinit var observerNewsArticle: Observer<ArticlesResponse>
+    private lateinit var themesAdapter: ThemesAdapter
     private lateinit var newsSourceAdapter: NewsSourceAdapter
     private lateinit var newsArticleAdapter: NewsArticleAdapter
     private val sourceList = ArrayList<SourceEntity>()
+    private val themesList = ArrayList<ThemeEntity>()
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,11 +47,21 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
         return view
     }
 
+    private val themeListener: (ThemeEntity) -> Unit = {themeEntity -> println(themeEntity.name) }
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        themesAdapter = ThemesAdapter(themeListener, themesList)
         newsSourceAdapter = NewsSourceAdapter(this, sourceList)
         recyclerView.adapter = newsSourceAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
+
+        observerThemes = Observer { themes ->
+            if (themes?.data != null && themes.data.isNotEmpty()) {
+                progressDialog.dismiss()
+                themesAdapter.updateDataSet(themes.data)
+            }
+        }
 
         observerNewsSource = Observer { newsSource ->
             if (newsSource?.data != null && newsSource.data.isNotEmpty()) {
