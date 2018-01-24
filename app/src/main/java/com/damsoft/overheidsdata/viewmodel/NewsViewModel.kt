@@ -17,6 +17,7 @@ import com.damsoft.overheidsdata.ui.repo.NewsRepository
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val newsRepo : NewsRepository = NewsRepository(APIInterface.getNewsAPIService())
+    private val themsRepo : NewsRepository = NewsRepository(APIInterface.getThemesAPIService())
     val context: Context = application.applicationContext
 
     fun getNewsSource(language: String?, category: String?, country: String?): LiveData<Resource<List<SourceEntity>>> {
@@ -28,6 +29,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getThemes(): LiveData<Resource<List<ThemeEntity>>> {
-        return newsRepo.fetchThemes(context)
+        return themsRepo.fetchThemes(context)
     }
 }

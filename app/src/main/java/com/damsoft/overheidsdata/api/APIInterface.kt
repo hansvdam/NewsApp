@@ -19,10 +19,19 @@ interface APIInterface {
 
     companion object {
         val NEWSAPI_URL = "https://newsapi.org/v1/"
+        val THEMESAPI_URL = "https://newsapi.org/v1/"
 
         fun getNewsAPIService(): APIInterface {
+            return getApiInterface(NEWSAPI_URL)
+        }
+
+        fun getThemesAPIService(): APIInterface {
+            return getApiInterface(THEMESAPI_URL)
+        }
+
+        private fun getApiInterface(s: String): APIInterface {
             return Retrofit.Builder()
-                    .baseUrl(NEWSAPI_URL)
+                    .baseUrl(s)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(LiveDataCallAdapterFactory())
                     .build()
