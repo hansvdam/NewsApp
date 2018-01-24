@@ -50,7 +50,8 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
         super.onViewCreated(view, savedInstanceState)
         themesAdapter = ThemesAdapter(themeListener, themesList)
         newsSourceAdapter = NewsSourceAdapter(this, sourceList)
-        recyclerView.adapter = newsSourceAdapter
+//        recyclerView.adapter = newsSourceAdapter
+        recyclerView.adapter = themesAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
         observerThemes = Observer { themes ->
@@ -76,8 +77,8 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
         }
 
 
-//        newsViewModel.getThemes()
-//                .observe(this, observerThemes)
+        newsViewModel.getThemes()
+                .observe(this, observerThemes)
 
         newsViewModel.getNewsSource(null, null, null)
                 .observe(this, observerNewsSource)
