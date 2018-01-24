@@ -81,38 +81,4 @@ class NewsRepository(private val apiInterface: APIInterface) {
         return liveDataArticlesResponse
     }
 
-    fun fetchThemes(context: Context): LiveData<Resource<List<ThemeEntity>>> {
-        return object : NetworkBoundResource<List<ThemeEntity>, ThemeResponse>() {
-            override fun onFetchFailed() {
-                repoRateLimiter.reset("all")
-            }
-
-            override fun saveCallResult(item: ThemeResponse) {
-//                To avoid this make API response pojo class as entity
-                var sourceList = ArrayList<ThemeEntity>()
-                item.sources.forEach {
-                    var ThemeEntity = ThemeEntity()
-                    ThemeEntity.id = it.id
-                    ThemeEntity.description = it.description
-                    ThemeEntity.name = it.name
-                    ThemeEntity.theme_facet = it.theme_facet
-                    sourceList.add(ThemeEntity)
-                }
-                NewsDBHelper.getInstance(context).getThemeDao().insertSources(sourceList)
-            }
-
-            override fun shouldFetch(data: List<ThemeEntity>?): Boolean = repoRateLimiter.shouldFetch("all")
-
-            override fun loadFromDb(): LiveData<List<ThemeEntity>> {
-                return NewsDBHelper.getInstance(context).getThemeDao().getAllThemes()
-            }
-
-            override fun createCall(): LiveData<ApiResponse<ThemeResponse>> {
-                val returnValue = MutableLiveData<ApiResponse<ThemeResponse>>()
-                returnValue.value = ApiResponse(Response.success(ThemeResponse("ok", mutableListOf(ThemeResponseItem("bb","name1","desc1","facet1")))))
-                return returnValue
-            }
-        }.asLiveData()
-
-    }
 }

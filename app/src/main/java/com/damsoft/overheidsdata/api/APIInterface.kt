@@ -19,24 +19,11 @@ interface APIInterface {
 
     companion object {
         val NEWSAPI_URL = "https://newsapi.org/v1/"
-        val THEMESAPI_URL = "https://newsapi.org/v1/"
 
-        fun getNewsAPIService(): APIInterface {
-            return getApiInterface(NEWSAPI_URL)
+        fun getAPIService(): APIInterface {
+            return getApiInterface(NEWSAPI_URL, APIInterface::class.java)
         }
 
-        fun getThemesAPIService(): APIInterface {
-            return getApiInterface(THEMESAPI_URL)
-        }
-
-        private fun getApiInterface(s: String): APIInterface {
-            return Retrofit.Builder()
-                    .baseUrl(s)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(LiveDataCallAdapterFactory())
-                    .build()
-                    .create(APIInterface::class.java)
-        }
     }
 
     @GET("sources")
@@ -48,4 +35,13 @@ interface APIInterface {
     fun getArticles(@Query("source") source: String,
                     @Query("sortBy") sortBy: String?,
                     @Query("apiKey") apiKey: String): Call<ArticlesResponse>
+}
+
+fun <T> getApiInterface(s: String, clazz: Class<T>): T {
+    return Retrofit.Builder()
+            .baseUrl(s)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
+            .build()
+            .create(clazz)
 }
