@@ -9,7 +9,7 @@ import java.util.regex.Pattern
 /**
  * Created by abhinav.sharma on 06/11/17.
  */
-class ApiResponse<T> {
+open class ApiResponse<T> {
     val code: Int
     val body: T?
     val errorMessage: String?
@@ -66,7 +66,7 @@ class ApiResponse<T> {
         }
     }
 
-    val isSuccessful: Boolean
+    open val isSuccessful: Boolean
         get() = code >= 200 && code < 300
 
     val nextPage: Int?

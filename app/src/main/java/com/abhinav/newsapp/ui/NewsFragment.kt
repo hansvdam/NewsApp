@@ -1,7 +1,6 @@
 package com.abhinav.newsapp.ui
 
 import android.app.ProgressDialog
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -18,8 +17,6 @@ import com.abhinav.newsapp.api.Resource
 import com.abhinav.newsapp.db.SourceEntity
 import com.abhinav.newsapp.db.ThemeEntity
 import com.abhinav.newsapp.ui.model.ArticlesResponse
-import com.abhinav.newsapp.ui.model.Source
-import com.abhinav.newsapp.ui.model.SourceResponse
 import com.abhinav.newsapp.ui.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -78,6 +75,9 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
             }
         }
 
+
+//        newsViewModel.getThemes()
+//                .observe(this, observerThemes)
 
         newsViewModel.getNewsSource(null, null, null)
                 .observe(this, observerNewsSource)
