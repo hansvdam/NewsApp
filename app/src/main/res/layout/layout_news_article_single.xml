@@ -35,18 +35,19 @@
             android:id="@+id/organisation_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dataset_name"
-            android:text="organisatie: "
-            />
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/dataset_name"
+            android:text="organisatie: " />
         <TextView
             android:id="@+id/organization"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dataset_name"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             app:layout_constraintStart_toEndOf="@+id/organisation_label"
+            app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/textPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dataset_name" />
