@@ -16,7 +16,7 @@ import com.damsoft.overheidsdata.adapter.ThemesAdapter
 import com.damsoft.overheidsdata.api.Resource
 import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity
-import com.damsoft.overheidsdata.ui.model.ArticlesResponse
+import com.damsoft.overheidsdata.model.ArticlesResponse
 import com.damsoft.overheidsdata.ui.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 

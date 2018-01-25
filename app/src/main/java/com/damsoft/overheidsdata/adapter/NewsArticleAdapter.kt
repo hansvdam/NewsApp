@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.damsoft.overheidsdata.R
 import com.damsoft.overheidsdata.adapter.viewholder.NewsArticleViewHolder
 import com.damsoft.overheidsdata.inflate
-import com.damsoft.overheidsdata.ui.model.Article
+import com.damsoft.overheidsdata.model.Article
 
 /**
  * Created by abhinav.sharma on 02/11/17.

@@ -1,4 +1,4 @@
-package com.damsoft.overheidsdata.ui.model
+package com.damsoft.overheidsdata.model
 import com.google.gson.annotations.SerializedName
 
 

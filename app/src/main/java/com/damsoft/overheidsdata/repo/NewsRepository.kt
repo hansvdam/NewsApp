@@ -14,10 +14,10 @@ import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity
 import java.util.concurrent.TimeUnit
 import com.damsoft.overheidsdata.ui.api.APIInterface
-import com.damsoft.overheidsdata.ui.model.ArticlesResponse
-import com.damsoft.overheidsdata.ui.model.SourceResponse
-import com.damsoft.overheidsdata.ui.model.ThemeResponse
-import com.damsoft.overheidsdata.ui.model.ThemeResponseItem
+import com.damsoft.overheidsdata.model.ArticlesResponse
+import com.damsoft.overheidsdata.model.SourceResponse
+import com.damsoft.overheidsdata.model.ThemeResponse
+import com.damsoft.overheidsdata.model.ThemeResponseItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -9,7 +9,7 @@ import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.api.APIInterface
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
-import com.damsoft.overheidsdata.ui.model.ArticlesResponse
+import com.damsoft.overheidsdata.model.ArticlesResponse
 import com.damsoft.overheidsdata.ui.repo.NewsRepository
 import com.damsoft.overheidsdata.ui.repo.ThemesRepository
 
@@ -19,7 +19,7 @@ import com.damsoft.overheidsdata.ui.repo.ThemesRepository
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val newsRepo = NewsRepository(APIInterface.getAPIService())
-    private val themsRepo  = ThemesRepository(ThemesAPIInterface.getAPIService())
+    private val themesRepo = ThemesRepository(ThemesAPIInterface.getAPIService())
 
     val context: Context = application.applicationContext
 
@@ -32,6 +32,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getThemes(): LiveData<Resource<List<ThemeEntity>>> {
-        return themsRepo.fetchThemes(context)
+        return themesRepo.fetchThemes(context)
     }
 }

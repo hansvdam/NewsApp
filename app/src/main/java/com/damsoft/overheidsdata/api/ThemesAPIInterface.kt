@@ -3,9 +3,9 @@ package com.damsoft.overheidsdata.ui.api
 import android.arch.lifecycle.LiveData
 import com.damsoft.overheidsdata.api.ApiResponse
 import com.damsoft.overheidsdata.api.LiveDataCallAdapterFactory
-import com.damsoft.overheidsdata.ui.model.ArticlesResponse
-import com.damsoft.overheidsdata.ui.model.SourceResponse
-import com.damsoft.overheidsdata.ui.model.ThemeResponse
+import com.damsoft.overheidsdata.model.ArticlesResponse
+import com.damsoft.overheidsdata.model.SourceResponse
+import com.damsoft.overheidsdata.model.ThemeResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

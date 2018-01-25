@@ -3,7 +3,7 @@ package com.damsoft.overheidsdata.adapter.viewholder
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.damsoft.overheidsdata.load
-import com.damsoft.overheidsdata.ui.model.Article
+import com.damsoft.overheidsdata.model.Article
 import kotlinx.android.synthetic.main.layout_news_article_single.view.*
 
 /**

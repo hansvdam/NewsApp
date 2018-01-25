@@ -10,7 +10,7 @@ import com.damsoft.overheidsdata.db.NewsDBHelper
 import com.damsoft.overheidsdata.db.ThemeEntity
 import java.util.concurrent.TimeUnit
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
-import com.damsoft.overheidsdata.ui.model.ThemeResponse
+import com.damsoft.overheidsdata.model.ThemeResponse
 
 
 /**
