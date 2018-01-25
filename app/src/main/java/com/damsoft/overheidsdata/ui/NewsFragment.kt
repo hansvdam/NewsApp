@@ -107,7 +107,7 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
     fun onBackPressed(): Boolean {
         return when {
             recyclerView.adapter is NewsArticleAdapter -> {
-                recyclerView.adapter = newsSourceAdapter
+                recyclerView.adapter = themesAdapter
                 true
             }
             else -> false
