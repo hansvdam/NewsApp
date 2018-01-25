@@ -9,11 +9,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.damsoft.overheidsdata.R
 import com.damsoft.overheidsdata.adapter.NewsArticleAdapter
 import com.damsoft.overheidsdata.adapter.NewsSourceAdapter
 import com.damsoft.overheidsdata.adapter.ThemesAdapter
 import com.damsoft.overheidsdata.api.Resource
+import com.damsoft.overheidsdata.api.Status
 import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.model.ArticlesResponse
@@ -44,7 +46,9 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
         return view
     }
 
-    private val themeListener: (ThemeEntity) -> Unit = {themeEntity -> println(themeEntity.name) }
+    private val themeListener: (ThemeEntity) -> Unit = {themeEntity ->
+
+        println(themeEntity.name) }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,10 +58,15 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
         recyclerView.adapter = themesAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        observerThemes = Observer { themes ->
-            if (themes?.data != null && themes.data.isNotEmpty()) {
+        observerThemes = Observer { themesResponse ->
+            if (themesResponse?.data != null && themesResponse.data.isNotEmpty()) {
                 progressDialog.dismiss()
-                themesAdapter.updateDataSet(themes.data)
+                themesAdapter.updateDataSet(themesResponse.data)
+            }
+            // not the best way to show that fetching data failed, but the original code showed nothing when
+            // DB-data is outdated, but re-fetching fails.
+            if (themesResponse?.status == Status.ERROR) {
+                Toast.makeText(this.activity, themesResponse.message, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -65,6 +74,11 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
             if (newsSource?.data != null && newsSource.data.isNotEmpty()) {
                 progressDialog.dismiss()
                 newsSourceAdapter.updateDataSet(newsSource.data)
+            }
+            // not the best way to show that fetching data failed, but the original code showed nothing when
+            // DB-data is outdated, but re-fetching fails.
+            if (newsSource?.status == Status.ERROR) {
+                Toast.makeText(this.activity, newsSource.message, Toast.LENGTH_LONG).show()
             }
 
         }

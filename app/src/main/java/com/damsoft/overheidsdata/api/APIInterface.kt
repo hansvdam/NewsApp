@@ -10,6 +10,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import javax.xml.datatype.DatatypeConstants.SECONDS
+import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -19,6 +22,13 @@ interface APIInterface {
 
     companion object {
         val NEWSAPI_URL = "https://newsapi.org/v1/"
+
+        // just an OKHttp-client to I can make api-calls time-out faster, so the unhappy flow can be triggered easily
+        // by just switching off wifi (when running in the
+        val okHttpClient = OkHttpClient.Builder()
+                .readTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .build()
 
         fun getAPIService(): APIInterface {
             return getApiInterface(NEWSAPI_URL, APIInterface::class.java)
@@ -42,6 +52,7 @@ fun <T> getApiInterface(s: String, clazz: Class<T>): T {
             .baseUrl(s)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
+            .client(APIInterface.okHttpClient)
             .build()
             .create(clazz)
 }

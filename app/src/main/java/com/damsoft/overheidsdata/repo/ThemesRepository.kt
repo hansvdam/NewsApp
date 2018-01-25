@@ -18,7 +18,8 @@ import com.damsoft.overheidsdata.model.ThemeResponse
  */
 class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
 
-    val repoRateLimiter = RateLimiter<String>(10, TimeUnit.MINUTES)
+    // declare data stale quickly so we can see what happens more easily (than the normal 10 minutes)
+    val repoRateLimiter = RateLimiter<String>(30, TimeUnit.SECONDS)
 
     fun fetchThemes(context: Context): LiveData<Resource<List<ThemeEntity>>> {
         return object : NetworkBoundResource<List<ThemeEntity>, ThemeResponse>() {

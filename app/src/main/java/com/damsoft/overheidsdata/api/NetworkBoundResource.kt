@@ -9,32 +9,34 @@ import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by abhinav.sharma on 06/11/17.
+ *
+ * Loads from DB (Room) if appropriate otherwise load from network API, If that fails return DB-data.
  */
-abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constructor() {
-    private val result = MediatorLiveData<Resource<ResultType>>()
+abstract class NetworkBoundResource<DBEntityType, APIModelReponseType> @MainThread constructor() {
+    private val resultLiveData = MediatorLiveData<Resource<DBEntityType>>()
 
     init {
         val dbSource = loadFromDb()
-        result.addSource(dbSource) { resultType ->
-            result.removeSource(dbSource)
+        resultLiveData.addSource(dbSource) { resultType ->
+            resultLiveData.removeSource(dbSource)
             if (shouldFetch(resultType)) {
                 fetchFromNetwork(dbSource)
             } else {
-                result.addSource(dbSource) { rT -> result.value = Resource.success(rT) }
+                resultLiveData.addSource(dbSource) { rT -> resultLiveData.value = Resource.success(rT) }
             }
         }
     }
 
-    private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
+    private fun fetchFromNetwork(dbSource: LiveData<DBEntityType>) {
         val apiResponse = createCall()
         // we re-attach dbSource as a new source, it will dispatch its latest value quickly
-        result.addSource(dbSource) { resultType ->
-            result.value = Resource.loading(resultType)
+        resultLiveData.addSource(dbSource) { resultType ->
+            resultLiveData.value = Resource.loading(resultType)
         }
 
-        result.addSource(apiResponse) { response ->
-            result.removeSource(apiResponse)
-            result.removeSource(dbSource)
+        resultLiveData.addSource(apiResponse) { response ->
+            resultLiveData.removeSource(apiResponse)
+            resultLiveData.removeSource(dbSource)
 
             if (response!!.isSuccessful) {
                 processResponse(response).let {
@@ -45,36 +47,36 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                 // we specially request a new live data,
                 // otherwise we will get immediately last cached value,
                 // which may not be updated with latest results received from network.
-                result.addSource(loadFromDb()) { resultType -> result.value = Resource.success(resultType) }
+                resultLiveData.addSource(loadFromDb()) { resultType -> resultLiveData.value = Resource.success(resultType) }
 
             } else {
                 onFetchFailed()
-                result.addSource(dbSource
-                ) { resultType -> result.value = response.errorMessage?.let { Resource.error(resultType, it) } }
+                resultLiveData.addSource(dbSource
+                ) { resultType -> resultLiveData.value = response.errorMessage?.let { Resource.error(resultType, it) } }
             }
         }
     }
 
     protected open fun onFetchFailed() {}
 
-    fun asLiveData(): LiveData<Resource<ResultType>> {
-        return result
+    fun asLiveData(): LiveData<Resource<DBEntityType>> {
+        return resultLiveData
     }
 
     @WorkerThread
-    private fun processResponse(response: ApiResponse<RequestType>): RequestType? {
+    private fun processResponse(response: ApiResponse<APIModelReponseType>): APIModelReponseType? {
         return response.body
     }
 
     @WorkerThread
-    protected abstract fun saveCallResult(item: RequestType)
+    protected abstract fun saveCallResult(item: APIModelReponseType)
 
     @MainThread
-    protected abstract fun shouldFetch(data: ResultType?): Boolean
+    protected abstract fun shouldFetch(data: DBEntityType?): Boolean
 
     @MainThread
-    protected abstract fun loadFromDb(): LiveData<ResultType>
+    protected abstract fun loadFromDb(): LiveData<DBEntityType>
 
     @MainThread
-    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
+    protected abstract fun createCall(): LiveData<ApiResponse<APIModelReponseType>>
 }
