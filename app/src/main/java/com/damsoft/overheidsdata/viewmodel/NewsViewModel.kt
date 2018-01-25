@@ -9,7 +9,7 @@ import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.api.APIInterface
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
-import com.damsoft.overheidsdata.model.ArticlesResponse
+import com.damsoft.overheidsdata.model.packages.DataSets
 import com.damsoft.overheidsdata.ui.repo.NewsRepository
 import com.damsoft.overheidsdata.ui.repo.ThemesRepository
 
@@ -27,8 +27,8 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         return newsRepo.fetchNewsSource(context,language, category, country)
     }
 
-    fun getNewsArticles(source: String, sortBy: String?) : LiveData<ArticlesResponse> {
-        return newsRepo.getNewsArticles(source, sortBy)
+    fun getDataSets(theme: String, sortBy: String?) : LiveData<DataSets> {
+        return newsRepo.DataSets(theme)
     }
 
     fun getThemes(): LiveData<Resource<List<ThemeEntity>>> {

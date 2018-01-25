@@ -4,7 +4,7 @@ package com.damsoft.overheidsdata.model.packages;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Packages {
+public class DataSets {
 
     @SerializedName("help")
     @Expose

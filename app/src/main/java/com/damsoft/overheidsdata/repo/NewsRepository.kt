@@ -4,20 +4,16 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.util.Log
-import com.damsoft.overheidsdata.BuildConfig
 import com.damsoft.overheidsdata.RateLimiter
 import com.damsoft.overheidsdata.api.ApiResponse
 import com.damsoft.overheidsdata.api.NetworkBoundResource
 import com.damsoft.overheidsdata.api.Resource
 import com.damsoft.overheidsdata.db.NewsDBHelper
 import com.damsoft.overheidsdata.db.SourceEntity
-import com.damsoft.overheidsdata.db.ThemeEntity
 import java.util.concurrent.TimeUnit
 import com.damsoft.overheidsdata.ui.api.APIInterface
-import com.damsoft.overheidsdata.model.ArticlesResponse
 import com.damsoft.overheidsdata.model.SourceResponse
-import com.damsoft.overheidsdata.model.ThemeResponse
-import com.damsoft.overheidsdata.model.ThemeResponseItem
+import com.damsoft.overheidsdata.model.packages.DataSets
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,16 +61,15 @@ class NewsRepository(private val apiInterface: APIInterface) {
         }.asLiveData()
     }
 
-    fun getNewsArticles(source: String, sortBy: String?): LiveData<ArticlesResponse> {
-        val liveDataArticlesResponse: MutableLiveData<ArticlesResponse> = MutableLiveData()
-        apiInterface.getArticles(source, sortBy, BuildConfig.API_KEY).enqueue(object : Callback<ArticlesResponse> {
-            override fun onFailure(call: Call<ArticlesResponse>?, t: Throwable?) {
+    fun DataSets(themeFacet: String): LiveData<DataSets> {
+        val liveDataArticlesResponse: MutableLiveData<DataSets> = MutableLiveData()
+        val themeQueryParam = "theme_facet:\"" + themeFacet + "\""
+        apiInterface.getPackages(themeQueryParam).enqueue(object : Callback<DataSets> {
+            override fun onFailure(call: Call<DataSets>?, t: Throwable?) {
                 Log.e("Oops", "Network error ${t?.message}")
             }
 
-            override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
-                Log.e("Article Call Status", response.body()?.status)
-                Log.e("Article Call List Contains", "${response.body()?.articles?.size}")
+            override fun onResponse(call: Call<DataSets>, response: Response<DataSets>) {
                 liveDataArticlesResponse.value = response.body()
             }
         })

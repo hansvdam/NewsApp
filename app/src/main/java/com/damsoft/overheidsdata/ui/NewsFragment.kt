@@ -18,7 +18,7 @@ import com.damsoft.overheidsdata.api.Resource
 import com.damsoft.overheidsdata.api.Status
 import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity
-import com.damsoft.overheidsdata.model.ArticlesResponse
+import com.damsoft.overheidsdata.model.packages.DataSets
 import com.damsoft.overheidsdata.ui.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -30,7 +30,7 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
     private lateinit var newsViewModel: NewsViewModel
     private lateinit var observerThemes: Observer<Resource<List<ThemeEntity>>>
     private lateinit var observerNewsSource: Observer<Resource<List<SourceEntity>>>
-    private lateinit var observerNewsArticle: Observer<ArticlesResponse>
+    private lateinit var observerDataSets: Observer<DataSets>
     private lateinit var themesAdapter: ThemesAdapter
     private lateinit var newsSourceAdapter: NewsSourceAdapter
     private lateinit var newsArticleAdapter: NewsArticleAdapter
@@ -47,7 +47,8 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
     }
 
     private val themeListener: (ThemeEntity) -> Unit = {themeEntity ->
-
+        newsViewModel.getDataSets(themeEntity.theme_facet!!, null)
+                .observe(this, observerDataSets)
         println(themeEntity.name) }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -70,22 +71,22 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
             }
         }
 
-        observerNewsSource = Observer { newsSource ->
-            if (newsSource?.data != null && newsSource.data.isNotEmpty()) {
-                progressDialog.dismiss()
-                newsSourceAdapter.updateDataSet(newsSource.data)
-            }
-            // not the best way to show that fetching data failed, but the original code showed nothing when
-            // DB-data is outdated, but re-fetching fails.
-            if (newsSource?.status == Status.ERROR) {
-                Toast.makeText(this.activity, newsSource.message, Toast.LENGTH_LONG).show()
-            }
+//        observerNewsSource = Observer { newsSource ->
+//            if (newsSource?.data != null && newsSource.data.isNotEmpty()) {
+//                progressDialog.dismiss()
+//                newsSourceAdapter.updateDataSet(newsSource.data)
+//            }
+//            // not the best way to show that fetching data failed, but the original code showed nothing when
+//            // DB-data is outdated, but re-fetching fails.
+//            if (newsSource?.status == Status.ERROR) {
+//                Toast.makeText(this.activity, newsSource.message, Toast.LENGTH_LONG).show()
+//            }
+//
+//        }
 
-        }
-
-        observerNewsArticle = Observer { newsArticle ->
+        observerDataSets = Observer { newsArticle ->
             if (newsArticle != null) {
-                newsArticleAdapter = NewsArticleAdapter(newsArticle.articles!!)
+                newsArticleAdapter = NewsArticleAdapter(newsArticle.result.results!!)
                 recyclerView.adapter = newsArticleAdapter
             }
         }
@@ -94,13 +95,13 @@ class NewsFragment : Fragment(), (SourceEntity) -> Unit {
         newsViewModel.getThemes()
                 .observe(this, observerThemes)
 
-        newsViewModel.getNewsSource(null, null, null)
-                .observe(this, observerNewsSource)
+//        newsViewModel.getNewsSource(null, null, null)
+//                .observe(this, observerNewsSource)
     }
 
     override fun invoke(source: SourceEntity) {
-        newsViewModel.getNewsArticles(source.id!!, null)
-                .observe(this, observerNewsArticle)
+        newsViewModel.getDataSets(source.id!!, null)
+                .observe(this, observerDataSets)
     }
 
     fun onBackPressed(): Boolean {

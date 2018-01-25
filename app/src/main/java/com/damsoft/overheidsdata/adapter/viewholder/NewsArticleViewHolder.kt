@@ -3,7 +3,7 @@ package com.damsoft.overheidsdata.adapter.viewholder
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.damsoft.overheidsdata.load
-import com.damsoft.overheidsdata.model.Article
+import com.damsoft.overheidsdata.model.packages.DataSet
 import kotlinx.android.synthetic.main.layout_news_article_single.view.*
 
 /**
@@ -11,11 +11,11 @@ import kotlinx.android.synthetic.main.layout_news_article_single.view.*
  */
 class NewsArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(article: Article) = with(itemView){
-        tv_author.text = article.author
-        tv_publish_date.text = article.publishedAt
-        tv_title.text = article.title
-        iv_article_image.load(article.urlToImage!!) { requestCreator -> requestCreator.fit().centerCrop() }
+    fun bind(article: DataSet) = with(itemView){
+        organization.text = article.organization.name
+        dataset_notes.text = article.notes
+        dataset_name.text = article.name
+        iv_article_image.load("https://avatars2.githubusercontent.com/u/2060172?s=460&v=4") { requestCreator -> requestCreator.fit().centerCrop() }
 //        Picasso.with(itemView.context).load(article.urlToImage).fit().centerCrop().into(iv_article_image)
     }
 }

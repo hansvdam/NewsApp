@@ -18,7 +18,7 @@ public class Result {
     public Facets facets;
     @SerializedName("results")
     @Expose
-    public List<Result_> results = null;
+    public List<DataSet> results = null;
     @SerializedName("search_facets")
     @Expose
     public SearchFacets searchFacets;
