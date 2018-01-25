@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.damsoft.overheidsdata.R
 import com.damsoft.overheidsdata.adapter.NewsArticleAdapter
 import com.damsoft.overheidsdata.adapter.NewsSourceAdapter
-import com.damsoft.overheidsdata.adapter.viewholder.ThemesAdapter
+import com.damsoft.overheidsdata.adapter.ThemesAdapter
 import com.damsoft.overheidsdata.api.Resource
 import com.damsoft.overheidsdata.db.SourceEntity
 import com.damsoft.overheidsdata.db.ThemeEntity

@@ -14,13 +14,13 @@ interface ThemeDao {
     fun getAllThemes(): LiveData<List<ThemeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSources(source: List<ThemeEntity>)
+    fun insertThemes(source: List<ThemeEntity>)
 
     @Delete
     fun deleteSource(source: List<ThemeEntity>)
 
-//    fun insertSources(source: List<Source>) {
+//    fun insertThemes(source: List<Source>) {
 //
-//        insertSources(*sourceEntityArray.toTypedArray())
+//        insertThemes(*sourceEntityArray.toTypedArray())
 //    }
 }
