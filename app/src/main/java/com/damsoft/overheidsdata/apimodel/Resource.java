@@ -1,4 +1,4 @@
-package com.damsoft.overheidsdata.apimodel.packages;
+package com.damsoft.overheidsdata.apimodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.damsoft.overheidsdata.R
 import com.damsoft.overheidsdata.adapter.viewholder.DataSetViewHolder
-import com.damsoft.overheidsdata.apimodel.packages.DataSet
+import com.damsoft.overheidsdata.apimodel.DataSet
 import com.damsoft.overheidsdata.inflate
 
 /**

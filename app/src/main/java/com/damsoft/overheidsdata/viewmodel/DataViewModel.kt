@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.content.Context
 import com.damsoft.overheidsdata.api.Resource
-import com.damsoft.overheidsdata.apimodel.packages.DataSets
+import com.damsoft.overheidsdata.apimodel.DataSets
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.api.APIInterface
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface

@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.damsoft.overheidsdata.RateLimiter
-import com.damsoft.overheidsdata.apimodel.packages.DataSets
+import com.damsoft.overheidsdata.apimodel.DataSets
 import com.damsoft.overheidsdata.ui.api.APIInterface
 import retrofit2.Call
 import retrofit2.Callback

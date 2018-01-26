@@ -2,7 +2,7 @@ package com.damsoft.overheidsdata.adapter.viewholder
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.damsoft.overheidsdata.apimodel.packages.DataSet
+import com.damsoft.overheidsdata.apimodel.DataSet
 import com.damsoft.overheidsdata.load
 import kotlinx.android.synthetic.main.layout_dataset_single.view.*
 

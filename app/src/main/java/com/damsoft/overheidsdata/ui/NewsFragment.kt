@@ -15,7 +15,7 @@ import com.damsoft.overheidsdata.adapter.DataSetAdapter
 import com.damsoft.overheidsdata.adapter.ThemesAdapter
 import com.damsoft.overheidsdata.api.Resource
 import com.damsoft.overheidsdata.api.Status
-import com.damsoft.overheidsdata.apimodel.packages.DataSets
+import com.damsoft.overheidsdata.apimodel.DataSets
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -65,9 +65,9 @@ class NewsFragment : Fragment() {
             }
         }
 
-        observerDataSets = Observer { newsArticle ->
-            if (newsArticle != null) {
-                dataSetAdapter = DataSetAdapter(newsArticle.result.results!!)
+        observerDataSets = Observer { dataSets ->
+            if (dataSets != null) {
+                dataSetAdapter = DataSetAdapter(dataSets.result.results!!)
                 recyclerView.adapter = dataSetAdapter
             }
         }

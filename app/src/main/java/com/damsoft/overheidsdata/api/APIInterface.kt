@@ -1,7 +1,7 @@
 package com.damsoft.overheidsdata.ui.api
 
 import com.damsoft.overheidsdata.api.LiveDataCallAdapterFactory
-import com.damsoft.overheidsdata.apimodel.packages.DataSets
+import com.damsoft.overheidsdata.apimodel.DataSets
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
