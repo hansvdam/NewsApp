@@ -1,17 +1,21 @@
 # Android Architecture Sample
 
-[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) were announced in Google I/O 2017
-This is just a sample app explaining the new Architecture Guidelines written in **Kotlin**. The original can be found [here](https://github.com/abhinav272/NewsApp), which is also the base project. That project itself is hugely  inspired by [Googles GitHubBrowserSample](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample), which showcases all the modern stuff, but is (still) written in java
-this project is forked from. This project displays data from the dutch government from https://data.overheid.nl/. The available datasets from the Dutch Governement are grouped in themes. The first list the app displays is a list of [themes](https://github.com/dataoverheid/waardelijsten/blob/master/v2.0.0/donl-themes.json), which I modified a bit and put [here](https://hansvdam.github.io/overheidsthemes.json).
+[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) were announced in Google I/O 2017.
+This is just a sample app explaining the new Architecture Guidelines written in **Kotlin**. The project this one is based on can be found [here](https://github.com/abhinav272/NewsApp), which is also the base project, this project is forked from. That project itself is hugely  inspired by [Googles GitHubBrowserSample](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample), which showcases all the modern stuff, but is (still) written in java
+ This project displays data from the Dutch government from https://data.overheid.nl/. The available datasets from the Dutch governement are grouped into themes. 
+
+<img alt="NewsApp Main Page" height="450px" src="./art/Screenshot_themas.png" />  <img alt="NewsApp Main Page" height="450px" src="./art/Screenshot_datasets.png" />
+
+The first list the app displays is a list of [themes](https://github.com/dataoverheid/waardelijsten/blob/master/v2.0.0/donl-themes.json), which I modified a bit and put [here](https://hansvdam.github.io/overheidsthemes.json).
  Further documentation on the api of data.overheid (dutch for data.government) can be found [here](https://data.overheid.nl/technische-informatie), [here](https://data.overheid.nl/api) and [here](http://docs.ckan.org/en/latest/)
 
-The list of themes in the app also shows how many datasets belong to the theme (0 at the moment as it is not implemented yet). The list of themes is stores in a DB via Room. This means that after it's first use it is also
-available offline AND is not fetched every time it is viewed. The ThemesRepository has a RateLimiter which determines after how much time the data in the database is stale
- and should be refreshed from the web. This both saves network traffic for seldomly changing data and at same time makes it available for offline viewing.
+
+The list of themes in the app also shows how many datasets belong to the theme (0 at the moment as it is not implemented yet). The themes are  stored in a DB via Room. This means that after it's first use it is also
+available offline AND is not fetched every time it is viewed. The ThemesRepository has a RateLimiter which determines after how much time the data in the database is stale and should be refetched.
 
 When you  click on a theme, a list of datasets belonging to that theme is shown.
 
-The following text is from the original NewsApp project: 
+**The following text is from the original NewsApp project:** 
 
 ## Components Used
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata.html)
@@ -19,19 +23,11 @@ The following text is from the original NewsApp project:
 - [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room.html)
 
 ## About App
-This app uses [NewsAPI](https://newsapi.org/) to get various sources and each source can provide major headlines.
+This app uses 
 It uses [Retrofit 2](http://square.github.io/retrofit/) to fetch news sources and news headlines from the API and displays in a RecyclerView.
 It uses [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room.html) to provide offline functionality
 App first loads the data from DB and then checks for fresh data from API, API is only called if DB data is empty or expired
 The main aim of this sample app is show how to use the new [Architecture Guidelines](https://developer.android.com/topic/libraries/architecture/index.html) with Kotlin.
-
-## If you want to run:
-- Go to [NewsAPI](https://newsapi.org/) and generate an API key (It's only 2 steps!)
-- Put the API key at the bottom of the `gradle.properties`
-`
-newsAPIKey = "YOUR_API_KEY"
-`
-- Run the app
 
 ## Architecture
 

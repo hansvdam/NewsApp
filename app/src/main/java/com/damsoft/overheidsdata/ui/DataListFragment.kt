@@ -36,12 +36,14 @@ class DataListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View? = inflater?.inflate(R.layout.fragment_data_list, container, false)
         dataViewModel = ViewModelProviders.of(this).get(DataViewModel::class.java)
-        progressDialog = ProgressDialog.show(activity, "Overheids API", "Loading Data")
+        progressDialog = ProgressDialog.show(activity, getString(R.string.govAPI), getString(R.string.loading_data))
         progressDialog.show()
         return view
     }
 
     private val themeListener: (ThemeEntity) -> Unit = { themeEntity ->
+        activity.title = getString(R.string.theme_label, themeEntity.name)
+
         dataViewModel.getDataSets(themeEntity.theme_facet!!, null)
                 .observe(this, observerDataSets)
         println(themeEntity.name)
@@ -52,6 +54,7 @@ class DataListFragment : Fragment() {
         themesAdapter = ThemesAdapter(themeListener, themesList)
         recyclerView.adapter = themesAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
+        activity.title = getString(R.string.themes)
 
         observerThemes = Observer { themesResponse ->
             if (themesResponse?.data != null && themesResponse.data.isNotEmpty()) {
@@ -81,10 +84,13 @@ class DataListFragment : Fragment() {
     fun onBackPressed(): Boolean {
         return when {
             recyclerView.adapter is DataSetAdapter -> {
+                activity.title = getString(R.string.themes)
                 recyclerView.adapter = themesAdapter
                 true
             }
-            else -> false
+            else -> {
+                false
+            }
         }
     }
 }
