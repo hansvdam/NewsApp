@@ -8,7 +8,7 @@ import com.damsoft.overheidsdata.R
  */
 class HomeActivity : BaseActivity() {
 
-    private var newsFragment: NewsFragment? = null
+    private var dataListFragment: DataListFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +17,12 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun showSourceFragment() {
-        newsFragment = NewsFragment()
-        addFragment(newsFragment!!, R.id.container, "NewsFragment")
+        dataListFragment = DataListFragment()
+        addFragment(dataListFragment!!, R.id.container, "DataListFragment")
     }
 
     override fun onBackPressed() {
-        if (!newsFragment?.onBackPressed()!!)
+        if (!dataListFragment?.onBackPressed()!!)
             super.onBackPressed()
     }
 }

@@ -11,7 +11,7 @@ import com.damsoft.overheidsdata.ui.NewsConstants
 @Entity(tableName = NewsConstants.TABLE_THEME)
 class ThemeEntity(
         @PrimaryKey()
-        var id: String? = "",
+        var id: String = "",
         var name: String? = "",
         var description: String? = "",
         var theme_facet: String? = "" // main category used by datasets in the (Dutch) Government)

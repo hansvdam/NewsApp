@@ -3,21 +3,17 @@ package com.damsoft.overheidsdata.ui.repo
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.damsoft.overheidsdata.RateLimiter
 import com.damsoft.overheidsdata.apimodel.DataSets
 import com.damsoft.overheidsdata.ui.api.APIInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.TimeUnit
 
 
 /**
  * Created by abhinav.sharma on 31/10/17.
  */
-class NewsRepository(private val apiInterface: APIInterface) {
-
-    val repoRateLimiter = RateLimiter<String>(10, TimeUnit.MINUTES)
+class DataSetRepository(private val apiInterface: APIInterface) {
 
     fun fetchDataSets(themeFacet: String): LiveData<DataSets> {
         val liveDataArticlesResponse: MutableLiveData<DataSets> = MutableLiveData()

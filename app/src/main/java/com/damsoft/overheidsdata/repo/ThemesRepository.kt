@@ -10,6 +10,7 @@ import com.damsoft.overheidsdata.apimodel.ThemeResponse
 import com.damsoft.overheidsdata.db.NewsDBHelper
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -31,12 +32,13 @@ class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
 //                To avoid this make API response pojo class as entity
                 var themeList = ArrayList<ThemeEntity>()
                 item.sources.forEach {
-                    var ThemeEntity = ThemeEntity()
-                    ThemeEntity.id = it.id
-                    ThemeEntity.description = it.description
-                    ThemeEntity.name = it.name
-                    ThemeEntity.theme_facet = it.theme_facet
-                    themeList.add(ThemeEntity)
+                    if (it.id != null) {
+                        var ThemeEntity = ThemeEntity()
+                        ThemeEntity.id = it.id!!
+                        ThemeEntity.name = it.name
+                        ThemeEntity.theme_facet = it.theme_facet
+                        themeList.add(ThemeEntity)
+                    }
                 }
                 NewsDBHelper.getInstance(context).getThemeDao().insertThemes(themeList)
             }
@@ -56,4 +58,5 @@ class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
         }.asLiveData()
 
     }
+
 }

@@ -9,7 +9,7 @@ import com.damsoft.overheidsdata.apimodel.DataSets
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.api.APIInterface
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
-import com.damsoft.overheidsdata.ui.repo.NewsRepository
+import com.damsoft.overheidsdata.ui.repo.DataSetRepository
 import com.damsoft.overheidsdata.ui.repo.ThemesRepository
 
 /**
@@ -17,13 +17,13 @@ import com.damsoft.overheidsdata.ui.repo.ThemesRepository
  */
 class DataViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val newsRepo = NewsRepository(APIInterface.getAPIService())
+    private val dataSetRepo = DataSetRepository(APIInterface.getAPIService())
     private val themesRepo = ThemesRepository(ThemesAPIInterface.getAPIService())
 
     val context: Context = application.applicationContext
 
     fun getDataSets(theme: String, sortBy: String?): LiveData<DataSets> {
-        return newsRepo.fetchDataSets(theme)
+        return dataSetRepo.fetchDataSets(theme)
     }
 
     fun getThemes(): LiveData<Resource<List<ThemeEntity>>> {

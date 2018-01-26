@@ -18,12 +18,12 @@ import com.damsoft.overheidsdata.api.Status
 import com.damsoft.overheidsdata.apimodel.DataSets
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.viewmodel.DataViewModel
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.fragment_data_list.*
 
 /**
  * Created by abhinav.sharma on 01/11/17.
  */
-class NewsFragment : Fragment() {
+class DataListFragment : Fragment() {
 
     private lateinit var dataViewModel: DataViewModel
     private lateinit var observerThemes: Observer<Resource<List<ThemeEntity>>>
@@ -34,7 +34,7 @@ class NewsFragment : Fragment() {
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View? = inflater?.inflate(R.layout.fragment_news, container, false)
+        val view: View? = inflater?.inflate(R.layout.fragment_data_list, container, false)
         dataViewModel = ViewModelProviders.of(this).get(DataViewModel::class.java)
         progressDialog = ProgressDialog.show(activity, "News API", "Loading News Source from Web-Service")
         progressDialog.show()
