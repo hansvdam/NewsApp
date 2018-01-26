@@ -5,8 +5,6 @@ package com.damsoft.overheidsdata.ui
  */
 
 object NewsConstants {
-    const val DB_NAME = "db_news_app"
-    const val T_SOURCE = "t_source"
-    const val T_THEME = "t_theme_facet"
-    const val T_ARTICLE = "t_article"
+    const val DB_NAME = "db_overheidsdata"
+    const val TABLE_THEME = "theme_facet"
 }

@@ -9,9 +9,8 @@ import com.damsoft.overheidsdata.ui.NewsConstants
 /**
  * Created by abhinav.sharma on 04/11/17.
  */
-@Database(entities = arrayOf(SourceEntity::class, ThemeEntity::class), version = 1)
+@Database(entities = arrayOf(ThemeEntity::class), version = 1)
 abstract class NewsDBHelper : RoomDatabase() {
-    abstract fun getSourceDao(): SourceDao
     abstract fun getThemeDao(): ThemeDao
 
     companion object {

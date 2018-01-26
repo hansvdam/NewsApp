@@ -27,7 +27,7 @@ class ThemesAdapter(private val listener: (ThemeEntity) -> Unit, private var the
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemeViewHolder =
             ThemeViewHolder(parent.inflate(R.layout.layout_theme_single))
 
-    fun updateDataSet(data: List<ThemeEntity>){
+    fun updateDataSet(data: List<ThemeEntity>) {
         themesList = data
         notifyDataSetChanged()
     }

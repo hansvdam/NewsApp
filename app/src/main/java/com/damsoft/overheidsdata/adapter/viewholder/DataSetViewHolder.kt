@@ -2,16 +2,16 @@ package com.damsoft.overheidsdata.adapter.viewholder
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.damsoft.overheidsdata.apimodel.packages.DataSet
 import com.damsoft.overheidsdata.load
-import com.damsoft.overheidsdata.model.packages.DataSet
-import kotlinx.android.synthetic.main.layout_news_article_single.view.*
+import kotlinx.android.synthetic.main.layout_dataset_single.view.*
 
 /**
  * Created by abhinav.sharma on 02/11/17.
  */
-class NewsArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class DataSetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(article: DataSet) = with(itemView){
+    fun bind(article: DataSet) = with(itemView) {
         organization.text = article.organization.name
         dataset_notes.text = article.notes
         dataset_name.text = article.name

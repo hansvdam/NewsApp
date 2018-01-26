@@ -8,7 +8,7 @@ import com.damsoft.overheidsdata.ui.NewsConstants
  * Created by abhinav.sharma on 04/11/17.
  */
 
-@Entity(tableName = NewsConstants.T_THEME)
+@Entity(tableName = NewsConstants.TABLE_THEME)
 class ThemeEntity(
         @PrimaryKey()
         var id: String? = "",

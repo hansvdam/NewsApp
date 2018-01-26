@@ -1,9 +1,9 @@
+package com.damsoft.overheidsdata.apimodel.packages;
 
-package com.damsoft.overheidsdata.model.packages;
-
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Result {
 

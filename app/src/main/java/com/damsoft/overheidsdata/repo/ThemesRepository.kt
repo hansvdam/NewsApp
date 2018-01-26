@@ -6,11 +6,11 @@ import com.damsoft.overheidsdata.RateLimiter
 import com.damsoft.overheidsdata.api.ApiResponse
 import com.damsoft.overheidsdata.api.NetworkBoundResource
 import com.damsoft.overheidsdata.api.Resource
+import com.damsoft.overheidsdata.apimodel.ThemeResponse
 import com.damsoft.overheidsdata.db.NewsDBHelper
 import com.damsoft.overheidsdata.db.ThemeEntity
-import java.util.concurrent.TimeUnit
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
-import com.damsoft.overheidsdata.model.ThemeResponse
+import java.util.concurrent.TimeUnit
 
 
 /**

@@ -2,7 +2,7 @@ package com.damsoft.overheidsdata.ui.api
 
 import android.arch.lifecycle.LiveData
 import com.damsoft.overheidsdata.api.ApiResponse
-import com.damsoft.overheidsdata.model.ThemeResponse
+import com.damsoft.overheidsdata.apimodel.ThemeResponse
 import retrofit2.http.GET
 
 

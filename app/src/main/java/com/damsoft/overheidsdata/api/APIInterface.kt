@@ -1,16 +1,13 @@
 package com.damsoft.overheidsdata.ui.api
 
-import android.arch.lifecycle.LiveData
-import com.damsoft.overheidsdata.api.ApiResponse
 import com.damsoft.overheidsdata.api.LiveDataCallAdapterFactory
-import com.damsoft.overheidsdata.model.SourceResponse
-import com.damsoft.overheidsdata.model.packages.DataSets
+import com.damsoft.overheidsdata.apimodel.packages.DataSets
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
 
@@ -20,7 +17,7 @@ import java.util.concurrent.TimeUnit
 interface APIInterface {
 
     companion object {
-        val NEWSAPI_URL = "https://data.overheid.nl/data/api/3/action/"
+        val API_URL = "https://data.overheid.nl/data/api/3/action/"
 
         // just an OKHttp-client to I can make api-calls time-out faster, so the unhappy flow can be triggered easily
         // by just switching off wifi (when running in the
@@ -30,18 +27,13 @@ interface APIInterface {
                 .build()
 
         fun getAPIService(): APIInterface {
-            return getApiInterface(NEWSAPI_URL, APIInterface::class.java)
+            return getApiInterface(API_URL, APIInterface::class.java)
         }
 
     }
 
-    @GET("sources")
-    fun getSources(@Query("language") language: String?,
-                   @Query("category") category: String?,
-                   @Query("country") country: String?): LiveData<ApiResponse<SourceResponse>>
-
     @GET("package_search")
-    fun getPackages(@Query("q") themeParamValue: String): Call<DataSets>
+    fun getDataSets(@Query("q") themeParamValue: String): Call<DataSets>
 }
 
 fun <T> getApiInterface(s: String, clazz: Class<T>): T {

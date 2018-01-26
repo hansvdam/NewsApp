@@ -8,7 +8,7 @@ import com.damsoft.overheidsdata.R
  */
 class HomeActivity : BaseActivity() {
 
-    private var newsFragment : NewsFragment? = null
+    private var newsFragment: NewsFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

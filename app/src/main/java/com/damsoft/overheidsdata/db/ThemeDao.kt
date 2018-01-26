@@ -10,7 +10,7 @@ import com.damsoft.overheidsdata.ui.NewsConstants
 @Dao
 interface ThemeDao {
 
-    @Query("SELECT * FROM " + NewsConstants.T_THEME)
+    @Query("SELECT * FROM " + NewsConstants.TABLE_THEME)
     fun getAllThemes(): LiveData<List<ThemeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
