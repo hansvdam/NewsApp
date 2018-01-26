@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName
 
 data class ThemeResponse(
         @SerializedName("status") var status: String?, //ok
-        @SerializedName("themes") var sources: List<ThemeResponseItem>
+        @SerializedName("themes") var sources: List<ThemeItem>
 )
 
-data class ThemeResponseItem(
+data class ThemeItem(
         @SerializedName("id") var id: String?, //abc-news-au
         @SerializedName("name") var name: String?, //ABC News (AU)
         @SerializedName("description") var description: String?, //Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.

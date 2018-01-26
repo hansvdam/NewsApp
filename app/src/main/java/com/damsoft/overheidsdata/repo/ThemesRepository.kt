@@ -35,6 +35,7 @@ class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
                     if (it.id != null) {
                         var ThemeEntity = ThemeEntity()
                         ThemeEntity.id = it.id!!
+                        ThemeEntity.description = it.description
                         ThemeEntity.name = it.name
                         ThemeEntity.theme_facet = it.theme_facet
                         themeList.add(ThemeEntity)
@@ -52,7 +53,7 @@ class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
             override fun createCall(): LiveData<ApiResponse<ThemeResponse>> {
                 return apiInterface.getThemes()
 //                val returnValue = MutableLiveData<ApiResponse<ThemeResponse>>()
-//                returnValue.value = ApiResponse(Response.success(ThemeResponse("ok", mutableListOf(ThemeResponseItem("bb","name1","desc1","facet1")))))
+//                returnValue.value = ApiResponse(Response.success(ThemeResponse("ok", mutableListOf(ThemeItem("bb","name1","desc1","facet1")))))
 //                return returnValue
             }
         }.asLiveData()
