@@ -29,6 +29,32 @@
             tools:text="Google" />
 
         <TextView
+            android:id="@+id/no_of_entries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/textPrimary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/theme_name"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/entries_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/number_of"
+            android:textColor="@color/textPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/no_of_entries"
+            app:layout_constraintTop_toTopOf="@id/theme_name" />
+
+        <TextView
             android:id="@+id/theme_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Overheidsdata</string>
     <string name="attribution">powered by https://data.overheid.nl/</string>
+    <string name="number_of">aantal:</string>
 </resources>

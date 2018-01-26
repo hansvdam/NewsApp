@@ -12,8 +12,9 @@ data class ThemeResponse(
 )
 
 data class ThemeItem(
-        @SerializedName("id") var id: String?,
-        @SerializedName("name") var name: String?,
-        @SerializedName("description") var description: String?,
-        @SerializedName("theme_facet") var theme_facet: String?
+        @SerializedName("identifier") var identifier: String?,
+        @SerializedName("label") var name: String?,
+        @SerializedName("description") var description: String?
+//        @SerializedName("theme_facet") var theme_facet: String?
+
 )

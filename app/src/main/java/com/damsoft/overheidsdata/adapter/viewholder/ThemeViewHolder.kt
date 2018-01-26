@@ -13,6 +13,7 @@ class ThemeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(theme: ThemeEntity, listener: (ThemeEntity) -> Unit) = with(itemView) {
         theme_name.text = theme.name
         theme_description.text = theme.description
+        no_of_entries.text = "" + theme.number_of_entries
         itemView.setOnClickListener { listener(theme) }
     }
 }

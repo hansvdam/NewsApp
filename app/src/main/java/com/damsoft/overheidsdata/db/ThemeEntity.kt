@@ -11,8 +11,8 @@ import com.damsoft.overheidsdata.ui.DBConstants
 @Entity(tableName = DBConstants.TABLE_THEME)
 class ThemeEntity(
         @PrimaryKey()
-        var id: String = "",
+        var theme_facet: String = "", // main category used by datasets in the (Dutch) Government)
         var name: String? = "",
         var description: String? = "",
-        var theme_facet: String? = "" // main category used by datasets in the (Dutch) Government)
+        var number_of_entries: Int = 0
 )

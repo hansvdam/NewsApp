@@ -32,12 +32,12 @@ class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
 //                To avoid this make API response pojo class as entity
                 var themeList = ArrayList<ThemeEntity>()
                 item.sources.forEach {
-                    if (it.id != null) {
+                    if (it.identifier != null) {
                         var ThemeEntity = ThemeEntity()
-                        ThemeEntity.id = it.id!!
                         ThemeEntity.description = it.description
                         ThemeEntity.name = it.name
-                        ThemeEntity.theme_facet = it.theme_facet
+                        ThemeEntity.theme_facet = it.identifier!!
+                        ThemeEntity.number_of_entries = 0 // TODO: fetch these numbers with their own timeout by querying: https://data.overheid.nl/data/api/3/action/package_search?q=theme_facet:"http://standaarden.overheid.nl/owms/terms/Bestuur"&rows=0
                         themeList.add(ThemeEntity)
                     }
                 }
