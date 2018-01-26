@@ -11,9 +11,8 @@ import kotlinx.android.synthetic.main.layout_theme_single.view.*
 class ThemeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(theme: ThemeEntity, listener: (ThemeEntity) -> Unit) = with(itemView) {
-        tv_source_name.text = theme.name
-        tv_source_description.text = theme.description
-        tv_category.text = "dummy text"
+        theme_name.text = theme.name
+        theme_description.text = theme.description
         itemView.setOnClickListener { listener(theme) }
     }
 }
