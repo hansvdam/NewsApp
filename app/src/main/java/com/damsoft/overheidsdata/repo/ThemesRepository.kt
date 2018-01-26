@@ -7,7 +7,7 @@ import com.damsoft.overheidsdata.api.ApiResponse
 import com.damsoft.overheidsdata.api.NetworkBoundResource
 import com.damsoft.overheidsdata.api.Resource
 import com.damsoft.overheidsdata.apimodel.ThemeResponse
-import com.damsoft.overheidsdata.db.NewsDBHelper
+import com.damsoft.overheidsdata.db.DbHelper
 import com.damsoft.overheidsdata.db.ThemeEntity
 import com.damsoft.overheidsdata.ui.api.ThemesAPIInterface
 import java.util.*
@@ -41,13 +41,13 @@ class ThemesRepository(private val apiInterface: ThemesAPIInterface) {
                         themeList.add(ThemeEntity)
                     }
                 }
-                NewsDBHelper.getInstance(context).getThemeDao().insertThemes(themeList)
+                DbHelper.getInstance(context).getThemeDao().insertThemes(themeList)
             }
 
             override fun shouldFetch(data: List<ThemeEntity>?): Boolean = repoRateLimiter.shouldFetch("all")
 
             override fun loadFromDb(): LiveData<List<ThemeEntity>> {
-                return NewsDBHelper.getInstance(context).getThemeDao().getAllThemes()
+                return DbHelper.getInstance(context).getThemeDao().getAllThemes()
             }
 
             override fun createCall(): LiveData<ApiResponse<ThemeResponse>> {

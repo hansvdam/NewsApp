@@ -10,15 +10,15 @@ import com.damsoft.overheidsdata.ui.NewsConstants
  * Created by abhinav.sharma on 04/11/17.
  */
 @Database(entities = arrayOf(ThemeEntity::class), version = 1)
-abstract class NewsDBHelper : RoomDatabase() {
+abstract class DbHelper : RoomDatabase() {
     abstract fun getThemeDao(): ThemeDao
 
     companion object {
-        private var db: NewsDBHelper? = null
+        private var db: DbHelper? = null
 
-        fun getInstance(context: Context): NewsDBHelper {
+        fun getInstance(context: Context): DbHelper {
             if (db == null) {
-                db = Room.databaseBuilder(context, NewsDBHelper::class.java, NewsConstants.DB_NAME).build()
+                db = Room.databaseBuilder(context, DbHelper::class.java, NewsConstants.DB_NAME).build()
             }
             return db!!
         }

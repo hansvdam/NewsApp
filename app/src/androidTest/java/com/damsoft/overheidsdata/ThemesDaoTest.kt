@@ -5,7 +5,8 @@ import android.arch.lifecycle.Observer
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.damsoft.overheidsdata.db.NewsDBHelper
+import com.damsoft.overheidsdata.db.DbHelper
+import com.damsoft.overheidsdata.db.ThemeEntity
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -17,46 +18,46 @@ import java.util.concurrent.TimeUnit
  * Created by abhinav.sharma on 13/11/17.
  */
 @RunWith(AndroidJUnit4::class)
-class SourceDaoTest {
+class ThemesDaoTest {
 
-    private lateinit var newsDBHelper: NewsDBHelper
+    private lateinit var DbHelper: DbHelper
 
     @Before
     fun initDatabase() {
-        newsDBHelper = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-                NewsDBHelper::class.java)
+        DbHelper = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
+                DbHelper::class.java)
                 .allowMainThreadQueries()
                 .build()
     }
 
     @After
     fun closeDatabase() {
-        newsDBHelper.close()
+        DbHelper.close()
     }
 
-    private fun getNewsSourceDummyList() : List<SourceEntity> {
-        var sourceEntity = SourceEntity()
-        sourceEntity.name = "Google News"
-        sourceEntity.category = "General"
-        sourceEntity.description = "Some dummy description"
-        sourceEntity.id = "googlenews"
-        sourceEntity.language = "en"
-        var newsSourceList = ArrayList<SourceEntity>()
-        newsSourceList.add(sourceEntity)
+    private fun getNewsSourceDummyList(): List<ThemeEntity> {
+        var ThemeEntity = ThemeEntity()
+        ThemeEntity.name = "Google News"
+//        ThemeEntity.category = "General"
+        ThemeEntity.description = "Some dummy description"
+        ThemeEntity.id = "googlenews"
+//        ThemeEntity.language = "en"
+        var newsSourceList = ArrayList<ThemeEntity>()
+        newsSourceList.add(ThemeEntity)
         return newsSourceList
     }
 
     @Test
     fun testInsertAndRetrieve() {
-        newsDBHelper.getSourceDao().insertSources(getNewsSourceDummyList())
-        val allNewsSource = newsDBHelper.getSourceDao().getAllNewsSource()
+        DbHelper.getThemeDao().insertThemes(getNewsSourceDummyList())
+        val allNewsSource = DbHelper.getThemeDao().getAllThemes()
         assert(getValue(allNewsSource).equals(getNewsSourceDummyList()))
     }
 
     @Test
     fun testDelete() {
-        newsDBHelper.getSourceDao().deleteSource(getNewsSourceDummyList())
-        val allNewsSource = newsDBHelper.getSourceDao().getAllNewsSource()
+        DbHelper.getThemeDao().deleteSource(getNewsSourceDummyList())
+        val allNewsSource = DbHelper.getThemeDao().getAllThemes()
         assert(getValue(allNewsSource).isEmpty())
     }
 
