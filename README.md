@@ -1,8 +1,17 @@
 # Android Architecture Sample
 
 [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) were announced in Google I/O 2017
-This is just a sample app explaining the new Architecture Guidelines written in **Kotlin**.
-This sample app is powered by [NewsAPI](https://newsapi.org/).
+This is just a sample app explaining the new Architecture Guidelines written in **Kotlin**. The original can be found [here](https://github.com/abhinav272/NewsApp), which is also the base project. That project itself is hugely  inspired by [Googles GitHubBrowserSample](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample), which showcases all the modern stuff, but is (still) written in java
+this project is forked from. This project displays data from the dutch government from https://data.overheid.nl/. The available datasets from the Dutch Governement are grouped in themes. The first list the app displays is a list of [themes](https://github.com/dataoverheid/waardelijsten/blob/master/v2.0.0/donl-themes.json), which I modified a bit and put [here](https://hansvdam.github.io/overheidsthemes.json).
+ Further documentation on the api of data.overheid (dutch for data.government) can be found [here](https://data.overheid.nl/technische-informatie), [here](https://data.overheid.nl/api) and [here](http://docs.ckan.org/en/latest/)
+
+The list of themes in the app also shows how many datasets belong to the theme (0 at the moment as it is not implemented yet). The list of themes is stores in a DB via Room. This means that after it's first use it is also
+available offline AND is not fetched every time it is viewed. The ThemesRepository has a RateLimiter which determines after how much time the data in the database is stale
+ and should be refreshed from the web. This both saves network traffic for seldomly changing data and at same time makes it available for offline viewing.
+
+When you  click on a theme, a list of datasets belonging to that theme is shown.
+
+The following text is from the original NewsApp project: 
 
 ## Components Used
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata.html)
@@ -32,23 +41,6 @@ The app uses `ViewModel` to abstract the data from UI and `Repository` as single
 
 --------------------
 
-## Screenshots
-
-<img alt="NewsApp Main Page" height="450px" src="https://raw.githubusercontent.com/abhinav272/NewsApp/master/art/Screenshot_1509641380.png" />
-
-<img alt="NewsApp Main Page" height="450px" src="https://raw.githubusercontent.com/abhinav272/NewsApp/master/art/Screenshot_1509641449.png" />
-
-<img alt="NewsApp Main Page" height="450px" src="https://raw.githubusercontent.com/abhinav272/NewsApp/master/art/Screenshot_1509642715.png" />
-
-
-
---------------------
-
-## Future Roadmap
-- ~~Room Persistence Library for offline support~~
-- Support for Launguage, Country and Category selection
-- ~~Write test cases~~
-
 <p align="center">
   <h3>Proudly :muscle: made in <b><a href="https://kotlinlang.org/">Kotlin</a></b></h3>
 </p>
@@ -60,6 +52,29 @@ The app uses `ViewModel` to abstract the data from UI and `Repository` as single
     
     Copyright (c) 2017 Abhinav Sharma
     
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+-------
+
+    The MIT License (MIT)
+
+    Copyright (c) 2018 Hans van Dam
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights

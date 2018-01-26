@@ -15,6 +15,4 @@ data class ThemeItem(
         @SerializedName("identifier") var identifier: String?,
         @SerializedName("label") var name: String?,
         @SerializedName("description") var description: String?
-//        @SerializedName("theme_facet") var theme_facet: String?
-
 )

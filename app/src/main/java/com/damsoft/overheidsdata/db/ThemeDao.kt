@@ -18,9 +18,4 @@ interface ThemeDao {
 
     @Delete
     fun deleteSource(source: List<ThemeEntity>)
-
-//    fun insertThemes(source: List<Source>) {
-//
-//        insertThemes(*sourceEntityArray.toTypedArray())
-//    }
 }
