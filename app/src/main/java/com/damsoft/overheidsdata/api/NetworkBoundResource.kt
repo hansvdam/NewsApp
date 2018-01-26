@@ -8,9 +8,12 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
 /**
- * Created by abhinav.sharma on 06/11/17.
+ * A generic class that can provide a resource backed by both the sqlite database and the network.
+ * <p>
+ * You can read more about it in the <a href="https://developer.android.com/arch">Architecture
+ * Guide</a>.
  *
- * Loads from DB (Room) if appropriate otherwise load from network API, If that fails return DB-data.
+ * from: https://github.com/googlesamples/android-architecture-components/blob/master/GithubBrowserSample/app/src/main/java/com/android/example/github/repository/NetworkBoundResource.java
  */
 abstract class NetworkBoundResource<DBEntityType, APIModelReponseType> @MainThread constructor() {
     private val resultLiveData = MediatorLiveData<Resource<DBEntityType>>()

@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 /**
  * Created by abhinav.sharma on 08/11/17.
  * LiveDataCallAdapter for retrofit
- * link: https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample
+ * link: https://github.com/googlesamples/android-architecture-components/blob/master/GithubBrowserSample/app/src/main/java/com/android/example/github/util/LiveDataCallAdapter.java
  */
 class LiveDataCallAdapter<R>(private val responseType: Type) : CallAdapter<R, LiveData<ApiResponse<R>>> {
 
