@@ -2,13 +2,13 @@ package com.damsoft.overheidsdata.db
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import com.damsoft.overheidsdata.ui.NewsConstants
+import com.damsoft.overheidsdata.ui.DBConstants
 
 /**
  * Created by abhinav.sharma on 04/11/17.
  */
 
-@Entity(tableName = NewsConstants.TABLE_THEME)
+@Entity(tableName = DBConstants.TABLE_THEME)
 class ThemeEntity(
         @PrimaryKey()
         var id: String = "",

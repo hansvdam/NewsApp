@@ -12,8 +12,8 @@ data class ThemeResponse(
 )
 
 data class ThemeItem(
-        @SerializedName("id") var id: String?, //abc-news-au
-        @SerializedName("name") var name: String?, //ABC News (AU)
-        @SerializedName("description") var description: String?, //Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.
-        @SerializedName("theme_facet") var theme_facet: String? //http://www.abc.net.au/news
+        @SerializedName("id") var id: String?,
+        @SerializedName("name") var name: String?,
+        @SerializedName("description") var description: String?,
+        @SerializedName("theme_facet") var theme_facet: String?
 )

@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.damsoft.overheidsdata.ui.NewsConstants
+import com.damsoft.overheidsdata.ui.DBConstants
 
 /**
  * Created by abhinav.sharma on 04/11/17.
@@ -18,7 +18,7 @@ abstract class DbHelper : RoomDatabase() {
 
         fun getInstance(context: Context): DbHelper {
             if (db == null) {
-                db = Room.databaseBuilder(context, DbHelper::class.java, NewsConstants.DB_NAME).build()
+                db = Room.databaseBuilder(context, DbHelper::class.java, DBConstants.DB_NAME).build()
             }
             return db!!
         }

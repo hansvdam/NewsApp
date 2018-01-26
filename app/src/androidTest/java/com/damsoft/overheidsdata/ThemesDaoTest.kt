@@ -35,30 +35,30 @@ class ThemesDaoTest {
         DbHelper.close()
     }
 
-    private fun getNewsSourceDummyList(): List<ThemeEntity> {
+    private fun getThemesDummyList(): List<ThemeEntity> {
         var ThemeEntity = ThemeEntity()
         ThemeEntity.name = "Google News"
 //        ThemeEntity.category = "General"
         ThemeEntity.description = "Some dummy description"
         ThemeEntity.id = "googlenews"
 //        ThemeEntity.language = "en"
-        var newsSourceList = ArrayList<ThemeEntity>()
-        newsSourceList.add(ThemeEntity)
-        return newsSourceList
+        var themesList = ArrayList<ThemeEntity>()
+        themesList.add(ThemeEntity)
+        return themesList
     }
 
     @Test
     fun testInsertAndRetrieve() {
-        DbHelper.getThemeDao().insertThemes(getNewsSourceDummyList())
-        val allNewsSource = DbHelper.getThemeDao().getAllThemes()
-        assert(getValue(allNewsSource).equals(getNewsSourceDummyList()))
+        DbHelper.getThemeDao().insertThemes(getThemesDummyList())
+        val allThemes = DbHelper.getThemeDao().getAllThemes()
+        assert(getValue(allThemes).equals(getThemesDummyList()))
     }
 
     @Test
     fun testDelete() {
-        DbHelper.getThemeDao().deleteSource(getNewsSourceDummyList())
-        val allNewsSource = DbHelper.getThemeDao().getAllThemes()
-        assert(getValue(allNewsSource).isEmpty())
+        DbHelper.getThemeDao().deleteSource(getThemesDummyList())
+        val allThemes = DbHelper.getThemeDao().getAllThemes()
+        assert(getValue(allThemes).isEmpty())
     }
 
     fun <T> getValue(liveData: LiveData<T>): T {

@@ -36,7 +36,7 @@ class DataListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View? = inflater?.inflate(R.layout.fragment_data_list, container, false)
         dataViewModel = ViewModelProviders.of(this).get(DataViewModel::class.java)
-        progressDialog = ProgressDialog.show(activity, "News API", "Loading News Source from Web-Service")
+        progressDialog = ProgressDialog.show(activity, "Overheids API", "Loading Data")
         progressDialog.show()
         return view
     }

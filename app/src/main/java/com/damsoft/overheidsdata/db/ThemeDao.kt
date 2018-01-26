@@ -2,7 +2,7 @@ package com.damsoft.overheidsdata.db
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import com.damsoft.overheidsdata.ui.NewsConstants
+import com.damsoft.overheidsdata.ui.DBConstants
 
 /**
  * Created by abhinav.sharma on 04/11/17.
@@ -10,7 +10,7 @@ import com.damsoft.overheidsdata.ui.NewsConstants
 @Dao
 interface ThemeDao {
 
-    @Query("SELECT * FROM " + NewsConstants.TABLE_THEME)
+    @Query("SELECT * FROM " + DBConstants.TABLE_THEME)
     fun getAllThemes(): LiveData<List<ThemeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
